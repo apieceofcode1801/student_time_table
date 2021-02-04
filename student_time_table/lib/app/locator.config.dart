@@ -9,6 +9,7 @@ import 'package:injectable/injectable.dart';
 
 import '../services/auth_service.dart';
 import '../services/data_service.dart';
+import '../services/timetable_service.dart';
 import '../services/user_service.dart';
 
 /// adds generated dependencies
@@ -22,6 +23,7 @@ GetIt $initGetIt(
   final gh = GetItHelper(get, environment, environmentFilter);
   gh.lazySingleton<AuthService>(() => AuthService());
   gh.lazySingleton<DataService>(() => DataService());
+  gh.lazySingleton<TimeTableService>(() => TimeTableService());
   gh.lazySingleton<UserService>(() => UserService());
   return get;
 }

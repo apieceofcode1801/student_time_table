@@ -13,7 +13,7 @@ void main() {
       test('When calling futureToRun dataService.getTimetable called', () {
         var model = HomeViewModel();
         var service = registerAndGetDataServiceMock();
-        model.futureToRun();
+        model.loadTimeTable();
         verify(service.getTimeTable);
       });
     });

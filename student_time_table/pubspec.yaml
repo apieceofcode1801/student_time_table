@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.1
   #state management
   stacked:
+  observable_ish:
   #navigation
   auto_route:
   stacked_services:

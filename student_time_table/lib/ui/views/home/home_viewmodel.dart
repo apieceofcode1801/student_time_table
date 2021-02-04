@@ -2,19 +2,27 @@ import 'package:stacked/stacked.dart';
 import 'package:student_time_table/app/locator.dart';
 import 'package:student_time_table/datamodels/time_table.dart';
 import 'package:student_time_table/services/data_service.dart';
+import 'package:student_time_table/services/timetable_service.dart';
 
-class HomeViewModel extends FutureViewModel {
+class HomeViewModel extends ReactiveViewModel {
   final _dataService = locator<DataService>();
+  final _timeTableService = locator<TimeTableService>();
 
-  TimeTable _timeTable;
-  TimeTable get timeTable => _timeTable;
+  HomeViewModel() {
+    loadTimeTable();
+  }
+
+  TimeTable get timeTable => _timeTableService.timeTable ?? TimeTable.init();
+
+  Future loadTimeTable() async {
+    var timeTable = await _dataService.getTimeTable();
+    if (timeTable == null) {
+      timeTable = TimeTable.init();
+    }
+    _timeTableService.setTimeTable(timeTable);
+    notifyListeners();
+  }
 
   @override
-  Future futureToRun() async {
-    _timeTable = await _dataService.getTimeTable();
-    if (_timeTable == null) {
-      _timeTable = TimeTable();
-    }
-    return _timeTable;
-  }
+  List<ReactiveServiceMixin> get reactiveServices => [_timeTableService];
 }

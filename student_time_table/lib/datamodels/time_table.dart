@@ -36,6 +36,23 @@ class TimeTable {
       this.sunAfternoon,
       this.sunMorning});
 
+  static TimeTable init() => TimeTable(
+        monMorning: ['', '', '', '', ''],
+        monAfternoon: ['', '', '', '', ''],
+        tueMorning: ['', '', '', '', ''],
+        tueAfternoon: ['', '', '', '', ''],
+        wedMorning: ['', '', '', '', ''],
+        wedAfternoon: ['', '', '', '', ''],
+        thuMorning: ['', '', '', '', ''],
+        thuAfternoon: ['', '', '', '', ''],
+        friMorning: ['', '', '', '', ''],
+        friAfternoon: ['', '', '', '', ''],
+        satMorning: ['', '', '', '', ''],
+        satAfternoon: ['', '', '', '', ''],
+        sunMorning: ['', '', '', '', ''],
+        sunAfternoon: ['', '', '', '', ''],
+      );
+
   factory TimeTable.fromJson(Map<String, dynamic> json) =>
       _$TimeTableFromJson(json);
 

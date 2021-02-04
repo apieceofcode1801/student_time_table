@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:student_time_table/services/timetable_service.dart';
 import 'package:student_time_table/ui/styles.dart';
+import 'package:student_time_table/ui/views/widgets/timetable_subject/timetable_subject_view.dart';
 
 class TimeTableDayView extends StatelessWidget {
   final subjectCount;
   final String title;
+  final Day day;
   final List<String> morningSubjects;
   final List<String> afternoonSubjects;
   const TimeTableDayView(
       {Key key,
+      this.day,
       this.title,
       this.morningSubjects,
       this.afternoonSubjects,
@@ -32,7 +36,7 @@ class TimeTableDayView extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    'No.',
+                    'No',
                     style: Styles.timeTableHeadTitle,
                     textAlign: TextAlign.center,
                   ),
@@ -73,31 +77,31 @@ class TimeTableDayView extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: Text(
-                '${i + 1}',
-                style: Styles.timeTableContent,
-                textAlign: TextAlign.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Text(
+                    '${i + 1}',
+                    style: Styles.timeTableContent,
+                    textAlign: TextAlign.center,
+                  )
+                ],
               ),
               flex: 1,
             ),
             Expanded(
-              child: morningSubjects != null && morningSubjects.length > i
-                  ? Text(
-                      morningSubjects[i],
-                      style: Styles.timeTableContent,
-                      textAlign: TextAlign.center,
-                    )
-                  : Text(''),
+              child: TimeTableSubjectView(
+                item: TimeTableSubjectItem(
+                    day, DayTime.morning, i, morningSubjects[i]),
+              ),
               flex: 3,
             ),
             Expanded(
-              child: afternoonSubjects != null && afternoonSubjects.length > i
-                  ? Text(
-                      afternoonSubjects[i],
-                      style: Styles.timeTableContent,
-                      textAlign: TextAlign.center,
-                    )
-                  : Text(''),
+              child: TimeTableSubjectView(
+                item: TimeTableSubjectItem(
+                    day, DayTime.afternoon, i, afternoonSubjects[i]),
+              ),
               flex: 3,
             )
           ],
