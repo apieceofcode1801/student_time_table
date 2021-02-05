@@ -42,6 +42,8 @@ dependencies:
   json_serializable:
   #utils
   path_provider:
+  #widgets
+  scroll_to_index:
 
 dev_dependencies:
   flutter_test:

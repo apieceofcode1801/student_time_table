@@ -7,6 +7,8 @@ import 'package:student_time_table/services/timetable_service.dart';
 class HomeViewModel extends ReactiveViewModel {
   final _dataService = locator<DataService>();
   final _timeTableService = locator<TimeTableService>();
+  bool _isListLayout = true;
+  bool get isListLayout => _isListLayout;
 
   HomeViewModel() {
     loadTimeTable();
@@ -20,6 +22,11 @@ class HomeViewModel extends ReactiveViewModel {
       timeTable = TimeTable.init();
     }
     _timeTableService.setTimeTable(timeTable);
+    notifyListeners();
+  }
+
+  void toogleLayout() {
+    _isListLayout = !_isListLayout;
     notifyListeners();
   }
 

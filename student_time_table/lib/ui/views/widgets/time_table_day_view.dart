@@ -4,6 +4,7 @@ import 'package:student_time_table/ui/styles.dart';
 import 'package:student_time_table/ui/views/widgets/timetable_subject/timetable_subject_view.dart';
 
 class TimeTableDayView extends StatelessWidget {
+  final double width;
   final subjectCount;
   final String title;
   final Day day;
@@ -15,16 +16,18 @@ class TimeTableDayView extends StatelessWidget {
       this.title,
       this.morningSubjects,
       this.afternoonSubjects,
-      this.subjectCount = 5})
+      this.subjectCount = 5,
+      this.width})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: width,
       padding: EdgeInsets.all(16),
       color: Styles.timeTableBackground,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             title,

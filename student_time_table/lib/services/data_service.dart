@@ -32,7 +32,7 @@ class DataService extends DataServiceAbstract {
       return TimeTable.fromJson(timeTableMap);
     } catch (e) {
       print(e.toString());
-      return TimeTable();
+      return TimeTable.init();
     }
   }
 

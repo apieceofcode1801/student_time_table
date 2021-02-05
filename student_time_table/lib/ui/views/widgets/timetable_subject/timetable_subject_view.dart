@@ -19,9 +19,7 @@ class TimeTableSubjectView extends StatelessWidget {
               textAlign: TextAlign.center,
               controller: _controller,
               style: Styles.timeTableContent,
-              onEditingComplete: () {
-                model.updateSubject(_controller.text);
-              },
+              onChanged: model.updateSubject,
             ),
           );
         },
