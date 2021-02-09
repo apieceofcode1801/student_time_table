@@ -33,6 +33,10 @@ class PagingTimeTableViewModel extends ReactiveViewModel {
         duration: Duration(milliseconds: 500), curve: Curves.ease);
   }
 
+  void endEditing() {
+    _timeTableService.setIsEdittingSubject(false);
+  }
+
   @override
   List<ReactiveServiceMixin> get reactiveServices => [_timeTableService];
 }

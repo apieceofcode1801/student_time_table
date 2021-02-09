@@ -13,30 +13,36 @@ class PagingTimeTableView extends StatelessWidget {
     print('Build paging time table view');
     return ViewModelBuilder<PagingTimeTableViewModel>.reactive(
         builder: (context, model, child) {
-          return Stack(
-            children: [
-              PageView(
-                scrollDirection: Axis.horizontal,
-                controller: model.pageController,
-                children: getListDayView(timeTable: timeTable)
-                    .map((e) => SingleChildScrollView(child: e))
-                    .toList(),
-              ),
-              model.showingActionBar
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.arrow_left),
-                          onPressed: model.toPreviousPage,
-                        ),
-                        IconButton(
-                            icon: Icon(Icons.arrow_right),
-                            onPressed: model.toNextPage),
-                      ],
-                    )
-                  : Container()
-            ],
+          return GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+              model.endEditing();
+            },
+            child: Stack(
+              children: [
+                PageView(
+                  scrollDirection: Axis.horizontal,
+                  controller: model.pageController,
+                  children: getListDayView(timeTable: timeTable)
+                      .map((e) => SingleChildScrollView(child: e))
+                      .toList(),
+                ),
+                model.showingActionBar
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.arrow_left),
+                            onPressed: model.toPreviousPage,
+                          ),
+                          IconButton(
+                              icon: Icon(Icons.arrow_right),
+                              onPressed: model.toNextPage),
+                        ],
+                      )
+                    : Container()
+              ],
+            ),
           );
         },
         viewModelBuilder: () => PagingTimeTableViewModel());
