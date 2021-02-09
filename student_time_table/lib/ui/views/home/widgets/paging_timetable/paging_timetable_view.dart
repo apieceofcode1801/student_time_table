@@ -10,29 +10,32 @@ class PagingTimeTableView extends StatelessWidget {
   const PagingTimeTableView({@required this.timeTable});
   @override
   Widget build(BuildContext context) {
-    print('rebuild paging view');
-    return ViewModelBuilder<PagingTimeTableViewModel>.nonReactive(
+    print('Build paging time table view');
+    return ViewModelBuilder<PagingTimeTableViewModel>.reactive(
         builder: (context, model, child) {
           return Stack(
             children: [
               PageView(
-                key: PageStorageKey('paging-timetable-key'),
                 scrollDirection: Axis.horizontal,
                 controller: model.pageController,
-                children: getListDayView(timeTable: timeTable),
+                children: getListDayView(timeTable: timeTable)
+                    .map((e) => SingleChildScrollView(child: e))
+                    .toList(),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_left),
-                    onPressed: model.toPreviousPage,
-                  ),
-                  IconButton(
-                      icon: Icon(Icons.arrow_right),
-                      onPressed: model.toNextPage),
-                ],
-              )
+              model.showingActionBar
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.arrow_left),
+                          onPressed: model.toPreviousPage,
+                        ),
+                        IconButton(
+                            icon: Icon(Icons.arrow_right),
+                            onPressed: model.toNextPage),
+                      ],
+                    )
+                  : Container()
             ],
           );
         },

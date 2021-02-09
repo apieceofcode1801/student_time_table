@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:stacked/stacked.dart';
 import 'package:student_time_table/datamodels/time_table.dart';
+import 'package:student_time_table/ui/styles.dart';
 import 'package:student_time_table/ui/views/home/home_view_helper.dart';
 import 'package:student_time_table/ui/views/home/widgets/listing_timetable/listing_timetable_viewmodel.dart';
 
@@ -20,10 +21,14 @@ class ListingTimeTableView extends StatelessWidget {
                 controller: model.scrollController,
                 children: getListDayView(timeTable: timeTable)
                     .map((e) => AutoScrollTag(
-                        key: ValueKey(e.day.index),
-                        controller: model.scrollController,
-                        index: e.day.index,
-                        child: e))
+                          key: ValueKey(e.day.index),
+                          controller: model.scrollController,
+                          index: e.day.index,
+                          child: Container(
+                            child: e,
+                            color: Styles.timeTableBackground,
+                          ),
+                        ))
                     .toList()),
           );
         },

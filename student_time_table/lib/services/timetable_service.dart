@@ -9,11 +9,21 @@ import 'package:student_time_table/services/data_service.dart';
 class TimeTableService with ReactiveServiceMixin {
   DataService _dataService = locator<DataService>();
   TimeTableService() {
-    listenToReactiveValues([]);
+    listenToReactiveValues([_timeTable, _isEdittingSubject]);
   }
 
   RxValue<TimeTable> _timeTable = RxValue<TimeTable>(initial: TimeTable.init());
   TimeTable get timeTable => _timeTable.value;
+
+  RxValue<bool> _isEdittingSubject = RxValue<bool>(initial: false);
+  bool get isEdittingSubject => _isEdittingSubject.value;
+  void setIsEdittingSubject(bool value) {
+    if (isPagingLayout) {
+      _isEdittingSubject.value = value;
+    }
+  }
+
+  bool isPagingLayout = false;
 
   void setTimeTable(TimeTable timeTable) {
     _timeTable.value = timeTable;

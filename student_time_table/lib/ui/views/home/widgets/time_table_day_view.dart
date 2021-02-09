@@ -1,30 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:student_time_table/services/timetable_service.dart';
 import 'package:student_time_table/ui/styles.dart';
-import 'package:student_time_table/ui/views/widgets/timetable_subject/timetable_subject_view.dart';
+import 'package:student_time_table/ui/views/home/widgets/timetable_subject/timetable_subject_view.dart';
 
 class TimeTableDayView extends StatelessWidget {
-  final double width;
   final subjectCount;
   final String title;
   final Day day;
   final List<String> morningSubjects;
   final List<String> afternoonSubjects;
-  const TimeTableDayView(
-      {Key key,
-      this.day,
-      this.title,
-      this.morningSubjects,
-      this.afternoonSubjects,
-      this.subjectCount = 5,
-      this.width})
-      : super(key: key);
+  const TimeTableDayView({
+    Key key,
+    this.day,
+    this.title,
+    this.morningSubjects,
+    this.afternoonSubjects,
+    this.subjectCount = 5,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width,
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.symmetric(vertical: 16),
       color: Styles.timeTableBackground,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

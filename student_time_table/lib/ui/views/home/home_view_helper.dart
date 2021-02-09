@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:student_time_table/datamodels/time_table.dart';
 import 'package:student_time_table/services/timetable_service.dart';
-import 'package:student_time_table/ui/views/widgets/time_table_day_view.dart';
+import 'package:student_time_table/ui/views/home/widgets/time_table_day_view.dart';
 
 List<TimeTableDayView> getListDayView({@required TimeTable timeTable}) {
   return [

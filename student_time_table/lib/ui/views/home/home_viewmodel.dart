@@ -27,6 +27,8 @@ class HomeViewModel extends ReactiveViewModel {
 
   void toogleLayout() {
     _isListLayout = !_isListLayout;
+    _timeTableService.isPagingLayout = !_isListLayout;
+    _timeTableService.setIsEdittingSubject(false);
     notifyListeners();
   }
 

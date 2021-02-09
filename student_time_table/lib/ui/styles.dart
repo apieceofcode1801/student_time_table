@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 abstract class Styles {
@@ -7,13 +8,14 @@ abstract class Styles {
   static const Color iconButtonColor = CupertinoColors.systemPurple;
 
   static const TextStyle navigationBarTitle = TextStyle(
-      color: CupertinoColors.black,
+      color: Colors.white,
       fontSize: 24,
       fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.bold);
+      fontWeight: FontWeight.bold,
+      fontFamily: 'Mali');
 
   // Time table
-  static const Color timeTableBackground = CupertinoColors.lightBackgroundGray;
+  static const Color timeTableBackground = Color(0xFFFAFAFA);
   static const Color timeTableBorder = CupertinoColors.inactiveGray;
   static const Color timeTableTextCursor = CupertinoColors.black;
 
